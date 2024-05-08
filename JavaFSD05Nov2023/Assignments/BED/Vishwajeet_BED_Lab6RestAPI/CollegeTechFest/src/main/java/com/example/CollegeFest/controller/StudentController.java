@@ -27,7 +27,7 @@ public class StudentController {
 
 		theModel.addAttribute("students", students);
 
-		return "list-students";
+		return "list-student";
 	}
 
 	@RequestMapping("/displayStudentForm")

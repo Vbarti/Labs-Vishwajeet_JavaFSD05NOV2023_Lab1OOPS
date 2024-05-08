@@ -38,44 +38,44 @@ public class SecurityConfig {
     }   
     
     
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .requestMatchers("/", "/students/list").hasAnyAuthority("ADMIN", "USER")
-            .requestMatchers("/students/add", "/students/update/**", "/students/delete/**").hasAuthority("ADMIN")
-            .anyRequest().authenticated()
-            .and()
-            .formLogin().loginProcessingUrl("/login").defaultSuccessUrl("/students/list").permitAll()
-            .and()
-            .logout().logoutSuccessUrl("/login").permitAll()
-            .and()
-            .exceptionHandling().accessDeniedPage("/students/403")
-            .and()
-            .csrf().disable();
-        
-        http.authenticationProvider(ssrsDaoAuthenticationProvider());
-        
-        return http.build();
-    }
-    
 //    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//      http.authorizeRequests()
-//        .requestMatchers("/","/students/list").hasAnyAuthority("ADMIN", "USER")
-//        .requestMatchers("/students/add", "/students/update/**", "/students/delete/**").hasAuthority("ADMIN")
-//        .anyRequest().authenticated()
-//        .and()
-//        .formLogin().loginProcessingUrl("/login").successForwardUrl("/students/list").permitAll()
-//        .and()
-//        .logout().logoutSuccessUrl("/login").permitAll()
-//        .and()
-//        .exceptionHandling().accessDeniedPage("/students/403")
-//        .and()
-//        .cors().and().csrf().disable();
-//      
-//      http.authenticationProvider(ssrsDaoAuthenticationProvider());
-//      return http.build();
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//            .requestMatchers("/", "/students/list").hasAnyAuthority("ADMIN", "USER")
+//            .requestMatchers("/students/add", "/students/update/**", "/students/delete/**").hasAuthority("ADMIN")
+//            .anyRequest().authenticated()
+//            .and()
+//            .formLogin().loginProcessingUrl("/login").defaultSuccessUrl("/students/list").permitAll()
+//            .and()
+//            .logout().logoutSuccessUrl("/login").permitAll()
+//            .and()
+//            .exceptionHandling().accessDeniedPage("/students/403")
+//            .and()
+//            .csrf().disable();
+//        
+//        http.authenticationProvider(ssrsDaoAuthenticationProvider());
+//        
+//        return http.build();
 //    }
+    
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+        .requestMatchers("/","/students/list").hasAnyAuthority("ADMIN", "USER")
+        .requestMatchers("/students/add", "/students/update/**", "/students/delete/**").hasAuthority("ADMIN")
+        .anyRequest().authenticated()
+        .and()
+        .formLogin().loginProcessingUrl("/login").successForwardUrl("/students/list").permitAll()
+        .and()
+        .logout().logoutSuccessUrl("/login").permitAll()
+        .and()
+        .exceptionHandling().accessDeniedPage("/students/403")
+        .and()
+        .cors().and().csrf().disable();
+      
+      http.authenticationProvider(ssrsDaoAuthenticationProvider());
+      return http.build();
+    }
 
    
 }
