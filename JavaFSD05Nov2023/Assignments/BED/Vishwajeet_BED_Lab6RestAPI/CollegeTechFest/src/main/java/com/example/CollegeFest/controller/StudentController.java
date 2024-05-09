@@ -3,6 +3,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,7 @@ public class StudentController {
 	}
 
 	@RequestMapping("/displayStudentForm")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String addStudent_Step1(Model theModel) {
 
 		Student student = new Student();
@@ -41,6 +43,7 @@ public class StudentController {
 	}
 
 	@PostMapping("/save")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String saveStudent(@RequestParam("id") int id, @RequestParam("firstName") String firstName,
 	    @RequestParam("lastName") String lastName, @RequestParam("course") String course,
 	    @RequestParam("country") String country) {
@@ -52,6 +55,7 @@ public class StudentController {
 	}  
 
 	@RequestMapping("/displayStudentForm_Update")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String updateStudent_Step1(@RequestParam("studentId") int studentId, Model theModel) {
 
 		Student student = studentService.findById(studentId);
@@ -64,6 +68,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping("/delete")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String delete(@RequestParam("studentId") int studentId) {
 
 	    // delete the student
