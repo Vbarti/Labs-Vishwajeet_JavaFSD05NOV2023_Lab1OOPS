@@ -3,6 +3,7 @@ package com.example.EMS.controller;
 import com.example.EMS.model.Employee;
 import com.example.EMS.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +20,47 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    
+    
     @GetMapping("/list")
-    public String getAllEmployees(Model model) {
-        List<Employee> employees = employeeService.getAllEmployees();
-        model.addAttribute("employees", employees);
+    public String getAllEmployees(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "2") int size,
+            Model model) {
+        Page<Employee> employeePage = employeeService.getAllEmployees(page, size);
+        model.addAttribute("employees", employeePage.getContent());
+        model.addAttribute("totalPages", employeePage.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalElements", employeePage.getTotalElements());
+        model.addAttribute("size", size);
+
+        int startRecord = page * size + 1;
+        int endRecord = Math.min((page + 1) * size, (int) employeePage.getTotalElements());
+        model.addAttribute("startRecord", startRecord);
+        model.addAttribute("endRecord", endRecord);
+
         return "employeesList"; // View name
     }
+    
+    
+//    @GetMapping("/list")
+//    public String getAllEmployees(
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "2") int size,
+//            Model model) {
+//        Page<Employee> employeePage = employeeService.getAllEmployees(page, size);
+//        model.addAttribute("employees", employeePage.getContent());
+//        model.addAttribute("totalPages", employeePage.getTotalPages());
+//        model.addAttribute("currentPage", page);
+//        return "employeesList"; // View name
+//    }
+    
+//    @GetMapping("/list")
+//    public String getAllEmployees(Model model) {
+//        List<Employee> employees = employeeService.getAllEmployees();
+//        model.addAttribute("employees", employees);
+//        return "employeesList"; // View name
+//    }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -72,6 +108,40 @@ public class EmployeeController {
     public String deleteEmployee(@RequestParam Long id) {
         employeeService.deleteEmployee(id);
         return "redirect:/employees/list"; // Redirect to employee list
+    }
+    
+    
+    @GetMapping("/search")
+    public String searchEmployees(
+            @RequestParam(defaultValue = "") String firstName,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        Page<Employee> employeePage = employeeService.searchEmployeesByFirstName(firstName, page, size);
+        model.addAttribute("employees", employeePage.getContent());
+        model.addAttribute("totalPages", employeePage.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("firstName", firstName);
+        return "employeeSearch";
+    }
+
+    @GetMapping("/sort")
+    public String sortEmployees(
+            @RequestParam(defaultValue = "asc") String order,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        Page<Employee> employeePage;
+        if ("asc".equals(order)) {
+            employeePage = employeeService.getAllEmployeesSortedByFirstNameAsc(page, size);
+        } else {
+            employeePage = employeeService.getAllEmployeesSortedByFirstNameDesc(page, size);
+        }
+        model.addAttribute("employees", employeePage.getContent());
+        model.addAttribute("totalPages", employeePage.getTotalPages());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("order", order);
+        return "employeeSort";
     }
     
     @RequestMapping(value = "/error/403")
