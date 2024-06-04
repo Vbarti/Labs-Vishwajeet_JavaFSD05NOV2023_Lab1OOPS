@@ -1,0 +1,51 @@
+body {
+    background-image: url('background.jpg'); /* Change 'background.jpg' to your background image path */
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#lab-form {
+    border: 1px solid white; /* Border only appearance */
+    border-radius: 4px;
+    padding: 30px; /* Added padding */
+    background-color: rgba(255, 255, 255, 0.0); /* Transparent background */
+    width: 350px;
+}
+
+h1 {
+    text-align: left;
+    margin-top: 0;
+}
+
+input {
+    width: calc(100% - 20px);
+    border: none;
+    background-color: whitesmoke;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input:focus {
+    color: white;
+    background-color: rgba(70, 130, 180, 0.35); /* Light grey background on focus */
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    background-color: fuchsia;
+    border: none;
+    margin: 20px;
+}
