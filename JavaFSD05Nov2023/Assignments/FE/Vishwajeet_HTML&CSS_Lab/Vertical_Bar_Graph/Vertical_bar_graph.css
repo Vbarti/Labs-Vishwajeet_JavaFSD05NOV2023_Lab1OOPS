@@ -1,0 +1,74 @@
+.sectionClass{
+    background-color: whitesmoke;
+    position: absolute;
+    top: 10%;
+    left:40%;
+}
+.sectionClass article{
+    display: inline-block;
+}
+p{
+    padding-left: 20px;
+  
+}
+div{
+    width: 40px;
+    height: 300px;
+    margin: 20px;
+    background-color: rgb(202, 198, 192);
+}
+#barOne{
+    background-color: white;
+    width: 100%;
+    height: 70%;
+    animation-name: barOneAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+@keyframes barOneAnimation {
+    0%{
+        height: 100%;
+        background-color: white;
+    }
+    100%{
+        height: 70%;
+        background-color: white;
+    }
+} 
+#barTwo{
+    width: 100%;
+    background-color: white;
+    height: 60%;
+    animation-name: barTwoAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+ @keyframes barTwoAnimation {
+    0%{
+        height: 100%;
+        background-color: white;
+    }
+    100%{
+        height: 60%;
+        background-color: white;
+    }
+}
+#barThree{
+    background-color: white;
+    width: 100%;
+    height: 20%;
+    animation-name: barThreeAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+@keyframes barThreeAnimation {
+    0%{
+        height: 100%;
+        background-color: white;
+    }
+    100%{
+        height: 20%;
+        background-color: white;
+    }
+}
+
