@@ -1,0 +1,163 @@
+body{
+    background-color: honeydew;
+    margin: 0%;
+}
+/********************** Header and footer styles **********************/
+
+header{
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+    font-size: xx-large;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.685);
+    width: 100%;
+    text-align: center;
+}
+footer{
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    padding: 20px;
+    position: relative;
+    bottom: 0%;
+    text-align: center;
+}
+footer p {
+    margin: 0%;
+    padding: 15px;
+}
+/********************** Navigation bar styles **********************/
+
+#navigate{
+    /* position: -webkit-sticky; */
+    /* position: sticky;
+    top: 0%;
+    z-index: 1;
+    margin-left: 0%;
+    width: 100%; */
+    margin-left: 0%;
+    width: 100%;
+    position: sticky;
+    z-index: 1;
+    top: 0%;
+}
+.menu{
+    margin: 0%;
+    background-color: rgb(162, 162, 168);
+}
+.menu li{
+    padding: 10px;
+    display: inline-block;
+}
+.menu li a{
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}
+.menu li:hover{
+    background-color: black;
+}
+.menu li:nth-child(2):hover .dropdown, .menu li:nth-child(3):hover .dropdown{
+    display: block;
+    background-color:grey;
+}
+.dropdown{
+    position: absolute;
+    width: auto;
+    max-width: 200px;
+    display: none;
+    top:120px;
+    background-color: whitesmoke;
+    padding: 0%;
+}
+.dropdown li{
+    display: block;
+}
+.dropdown li:hover{
+    background-color: gainsboro
+}
+.dropdown li:hover a{
+    color: black;
+    font-size: 20px;
+} 
+
+/********************** Animation styles **********************/
+#offers {
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+#offers p {
+    border: solid steelblue 2px;
+    margin-left: 5%;
+    width: 60%;
+    height: 300px;
+    background-repeat: no-repeat;
+    animation-name: ads_ani;
+    animation-duration: 25s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ads_ani {
+    0% {
+        background-image: url('./Images/Animation/ani1.jpg');
+        width: 60%;
+    }
+    25% {
+        background-image: url('./Images/Animation/ani2.png');
+        width: 70%;
+    }
+    50% {
+        background-image: url('./Images/Animation/ani3.jpg');
+        width: 53%;
+    }
+    75% {
+        background-image: url(\'./Images/Animation/ani4.jpg');
+        width: 56%;
+    }
+    100% {
+        background-image: url('./Images/Animation/ani5.jpg');
+        width: 58%;
+    } 
+}
+
+/********************** Sample Products styles **********************/
+.product_section {
+    margin: 20px 0% 30px 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.product {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    background-color: gainsboro;
+}
+
+.product:hover {
+    padding: 20px;
+}
+
+.product img {
+    width: 300px;
+    height: 200px;
+}
+
+.product button {
+    width: 100%;
+    padding: 5px;
+    background-color: whitesmoke;
+    border: solid black 1px;
+    border-radius: 2px;
+}
+
+.product button:active {
+    background-color: rgb(250, 234, 230);
+    border: solid rgb(0, 255, 76) 1px;
+    border-radius: 2px;
+    color: rgb(0, 255, 76);
+    font-weight: bold;
+}
