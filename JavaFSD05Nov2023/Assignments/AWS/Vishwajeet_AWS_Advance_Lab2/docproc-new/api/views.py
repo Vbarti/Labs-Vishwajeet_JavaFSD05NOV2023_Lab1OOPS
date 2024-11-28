@@ -16,12 +16,12 @@ import datetime
 import mysql.connector
 
 
-hostname = 'database-1.cscvfmwopr1t.us-east-1.rds.amazonaws.com'
+hostname = 'invoices-db.cscvfmwopr1t.us-east-1.rds.amazonaws.com'
 username = 'admin'
-password = 'Vishwajeet123'
-database = 'snsdb'
+password = 'password'
+database = 'invoices-db'
 
-s3_target_bucket = 'targetbucketlab2'
+s3_target_bucket = 'my-target-bucket-lab2'
 
 
 # *******************************************************************************************************************
